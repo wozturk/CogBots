@@ -36,3 +36,11 @@ Search
 
 
  waarbij recommendations misschien leuk is om verder uit te zoeken. voor onze klanten, voor bijvoorbeeld related items achtige constructies
+
+image rec
+speach to type
+conversation cards
+hulp lijnen 
+
+rik eindhoven daf - visual recognize
+

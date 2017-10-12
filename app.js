@@ -2,6 +2,9 @@ let recommmendations = 'Endpoint: https://westus.api.cognitive.microsoft.com/rec
 		keyOne = ' c046560bd2f34d7396881a2616a4ed19',
 		keyTwo = '3796c08e7820457d97cce876d94e800f';
 
+let DigitBot_id = '1cc53111-5d74-4a74-a938-6d45be69b416';
+let DigitBot_pw = 'DkscUbUOvYnkE98nUgHkXwF'
+
 
 //botbuilder let's us run a bot locally.
 let builder  =  require('botbuilder');
@@ -24,6 +27,7 @@ let connector = new builder.ChatConnector({
 
    //for REST with the framework portal
    //Appname: AzureBot
+   //Bot handle: valtech_myfirstbot
    //App ID: 
    //App password: 
 });
