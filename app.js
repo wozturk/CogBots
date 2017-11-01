@@ -2,10 +2,6 @@ let recommmendations = 'Endpoint: https://westus.api.cognitive.microsoft.com/rec
 		keyOne = ' c046560bd2f34d7396881a2616a4ed19',
 		keyTwo = '3796c08e7820457d97cce876d94e800f';
 
-let DigitBot_id = '1cc53111-5d74-4a74-a938-6d45be69b416';
-let DigitBot_pw = 'DkscUbUOvYnkE98nUgHkXwF'
-
-
 //botbuilder let's us run a bot locally.
 let builder  =  require('botbuilder');
 // Restify let's us use the bot in a framwork channel or emulator
@@ -39,5 +35,19 @@ server.post('/api/messages', connector.listen());
 
 //the UniversalBot is the brains of the app.manages all conversation.
 let bot = new builder.UniversalBot(connector, session => {
-	session.send("You said: %s", session.message.text);
+	let msg = session.message;
+	if(msg.attachments && msg.attachments.length > 0) {
+		let attach = msg.attachments[0];
+		session.send({
+			text: "You sent: ",
+			attachments: [
+				{
+					contentUrl: attach.contentUrl,
+					name: attach.name
+				}
+			]
+		});
+	} else {
+		session.send("You said: %s", session.message.text);
+	}	
 });
