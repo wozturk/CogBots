@@ -35,19 +35,19 @@ server.post('/api/messages', connector.listen());
 
 //the UniversalBot is the brains of the app.manages all conversation.
 let bot = new builder.UniversalBot(connector, session => {
-	let msg = session.message;
-	if(msg.attachments && msg.attachments.length > 0) {
-		let attach = msg.attachments[0];
-		session.send({
-			text: "You sent: ",
-			attachments: [
-				{
-					contentUrl: attach.contentUrl,
-					name: attach.name
-				}
-			]
-		});
-	} else {
-		session.send("You said: %s", session.message.text);
-	}	
+		let msg = session.message;
+		if(msg.attachments && msg.attachments.length > 0) {
+			let attach = msg.attachments[0];
+			session.send({
+				text: "You sent: ",
+				attachments: [
+					{
+						contentUrl: attach.contentUrl,
+						name: attach.name
+					}
+				]
+			});
+		} else {
+			session.send("You said: %s", session.message.text);
+		}	
 });

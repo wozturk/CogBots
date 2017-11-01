@@ -44,3 +44,5 @@ hulp lijnen
 
 rik eindhoven daf - visual recognize
 
+-created a bot with node JS
+-added deploy bot from github
