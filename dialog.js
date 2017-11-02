@@ -30,14 +30,48 @@ const bot = new builder.UniversalBot(connector, [
 			
 		}
 	}
-
-
-
 ]);
 
 bot.dialog('playGame', [
-
 	(session, args, next) => {
-		
+		if(args) {
+			session.dialogData.isReprompt = args.isReprompt;
+		}
+		//prompts a user 
+		builder.Prompts.choice(session, 'Do you want to play a game?', ['yes', 'no'], {maxRetries: 3, retryPrompt: 'Mumbler! ...try again.'});
+	},
+	(session, results, next) => {
+		let answer = results.response.entity;
+		if(answer === 'yes') {
+			session.beginDialog('startGame');
+		} else if (answer === 'no') {
+			session.send(`dan niet joh!`);
+			session.endDialog();
+		} else {
+			session.send(`you fucked up. type much?`);
+			session.endDialog();
+		}
 	}
-	]);
+]);
+
+bot.dialog('startGame', [
+	(session, args, next) => {
+		session.send(`ik wil wat dingen van je weten`);
+		builder.Prompts.choice(session, 'Wat is je naam?', ['Chris', 'Guido'], {maxRetries: 3, retryPrompt: 'Mumbler! ...try again.'});
+	},
+	(session,results, next) => {
+
+
+	}
+]);
+
+bot.dialog('support', session => {
+		session.send(`Je snapt 't niet, he?`);
+		session.endDialog();
+}).triggerAction({
+	matches: [/help/i, /support/i, /huh/i]
+});
+// log any bot errors into the console
+bot.on('error', function (e) {
+    console.log('And error ocurred', e);
+});
