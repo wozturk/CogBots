@@ -1,7 +1,3 @@
-let recommmendations = 'Endpoint: https://westus.api.cognitive.microsoft.com/recommendations/v4.0',
-		keyOne = ' c046560bd2f34d7396881a2616a4ed19',
-		keyTwo = '3796c08e7820457d97cce876d94e800f';
-
 //botbuilder let's us run a bot locally.
 let builder  =  require('botbuilder');
 // Restify let's us use the bot in a framwork channel or emulator
@@ -26,7 +22,7 @@ let connector = new builder.ChatConnector({
 
 server.post('/api/messages', connector.listen());
 
-server.get(/.*/, restify.serveStatic({
+server.get(/.*/, restify.plugins.serveStatic({
 	'directory': '.',
 	'default': 'index.html'
 }));
