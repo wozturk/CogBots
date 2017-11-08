@@ -23,7 +23,7 @@ let connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 server.get(/.*/, restify.plugins.serveStatic({
-	'directory': '.',
+	'directory': __dirname,
 	'default': 'index.html'
 }));
 
