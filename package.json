@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "babel-node app.js --presets es2015"
+    "start": "node app.js"
   },
   "author": "Wieteke Ozturk-Pots",
   "license": "ISC",
