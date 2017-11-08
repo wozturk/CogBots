@@ -21,15 +21,15 @@ let connector = new builder.ChatConnector({
 	  appId: 'aeeb7b31-fc4c-43f8-9e00-ff3a97f7a898',
     appPassword: 'v5siPE79fS94EXxOGcC2HR9'
 
-   //for REST with the framework portal
-   //Appname: AzureBot
-   //Bot handle: valtech_myfirstbot
-   //App ID: 
-   //App password: 
 });
 
 
 server.post('/api/messages', connector.listen());
+
+server.get(/.*/, restify.serveStatic({
+	'directory': '.',
+	'default': 'index.html'
+}));
 
 //and it wil execute this function on enter. and console.log what we typed. very handy for nothing
 
