@@ -13,9 +13,10 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 //we start a listener. without restify we use 'new builder.ConsoleConnector().listen();'
 //with restiy , the listener is added below
 let connector = new builder.ChatConnector({
-		// you can use the framework service in the emulator without MS App credentials
-	  appId: 'aeeb7b31-fc4c-43f8-9e00-ff3a97f7a898',
-    appPassword: 'v5siPE79fS94EXxOGcC2HR9'
+		// My First Bot - howcanihelp
+	  appId: '69070849-e9fb-494f-9477-a4efa9ece047',
+    appPassword: 'hubmxZDS709%*(xrQRDN13?'
+
 
 });
 
