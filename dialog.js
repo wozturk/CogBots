@@ -71,6 +71,20 @@ bot.dialog('support', session => {
 }).triggerAction({
 	matches: [/help/i, /support/i, /huh/i]
 });
+
+	bot.dialog('chooseNextStep', [
+			session => {
+				builder.Prompts.choice(session,
+					`Was this helpful?`,
+					['yes', 'no'],
+					{listStyle: builder.listStyle.button });
+			},
+			(session,results) => {
+
+			}
+
+		]);
+
 // log any bot errors into the console
 bot.on('error', function (e) {
     console.log('And error ocurred', e);

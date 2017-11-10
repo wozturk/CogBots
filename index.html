@@ -3,10 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Azure Bot</title>
+	 <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 </head>
 <body>
 	<h1>Hello World</h1>
 	<p>This is my bot's home.</p>
-	<script src="./app.js"></script>
+	    <div id="bot"> </div>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script>
+      BotChat.App({
+        directLine: { secret: 'id6WnINJj8w.cwA.hqc.24PsVHx9z9Cq8EwXrJPiFNgFwszWwS2UjBxdzuTllNY' },
+        user: { id: 'userid' },
+        bot: { id: 'botid' },
+        resize: 'detect'
+      }, document.getElementById("bot"));
+    </script>
 </body>
 </html>
