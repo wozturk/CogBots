@@ -1,7 +1,9 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	font-family: "Source Sans Pro", "Helvetica", san-serif;
 }
+
 
 .app {
 	display: flex;
@@ -15,18 +17,26 @@ html, body {
 }
 
 .c-chat-overview {
+	padding: 2em;
 	width: calc((5*(100% / 12)) - 80px);
-	background-color: rgba(0,104,179,.2);
+	background-color: #7fb3d9;
 }
 .c-chat-overview header {
+	display: grid;
 	grid-template-areas: "img heading" "img tagline";
+	padding: 2em 0;
 }
 .c-chat-overview h2 {
 	grid-area: heading;
+	align-self: end;
+	margin: 0;
+	font-size: 2em;
 
 }
 .c-chat-overview p {
 	grid-area: tagline;
+	align-self: start;
+	margin-bottom: 0;
 
 }
 .c-chat-overview img {
@@ -37,12 +47,34 @@ html, body {
 }
 
 .o-tiles {
-	color: #0068b3;
+
 }
 
 .o-tiles article {
+	position: relative;
+	margin-bottom: 1em;
+	padding: 1em .6em;
+	background-color: #e5eff7;
+	box-shadow: 1px 1px 1px  rgba(0,0,0,.1);
+}
 
+.o-tiles article.active {
+	background-color: rgba(255,255,255,1)
 
+}
+.o-tiles article::after {
+	content: '>';
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	color: #7fb3d9;
+	transform: translateY(-50%) scaleY(2);
+}
+
+.o-tiles article h3 {
+	margin
+	: 0 0 .2em;
+	;
 }
 
 .u-border--circle {
@@ -53,6 +85,7 @@ html, body {
 .c-chat {
 	width: calc(7*(100% /12));
 	height: 100vh;
+	background-color: #e5eff7;
 
 }
 .c-chat__nav {
@@ -64,3 +97,12 @@ html, body {
 	height: calc(100vh - 80px);
 	position: relative;
 }
+
+.wc-console,
+.wc-message-content {
+	background-color:#ffffff!important;
+}
+.wc-message-from-me .wc-message-content {
+	background-color: #7fb3d9!important;
+}
+
