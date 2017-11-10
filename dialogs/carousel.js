@@ -6,13 +6,16 @@ module.exports = [
 		    var reply = new builder.Message(session)
 		        .attachmentLayout(builder.AttachmentLayout.carousel)
 		        .attachments(cards);
-				session.send(`There is a bee on your hat!`)
+				session.send(`E60 betekent dat je boiler stuk is.`)
 		    session.send(reply);
 
 		    builder.Prompts.choice(session,
 					`Was this helpful?`,
 					['yes', 'no'],
-					{listStyle: builder.ListStyle.button });
+					{
+						listStyle: builder.ListStyle.button,
+					  retryPrompt: 'Mumbler! ...try again.'
+					});
 		    
 
 

@@ -4,15 +4,58 @@
 	<meta charset="UTF-8">
 	<title>Azure Bot</title>
 	 <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+	 <link href="./styles.css" rel="stylesheet" />
 </head>
 <body>
-	<h1>Hello World</h1>
-	<p>This is my bot's home.</p>
-	    <div id="bot"> </div>
+	<div class="app">
+
+		<nav class="c-nav c-nav--collapse">
+			<button>menu</button>
+			<button>call</button>
+		</nav>
+
+		<div class="c-chat-overview o-tiles">
+			<header class="o-tiles__header">
+				<img src="https://loremflickr.com/320/180/portrait" alt="random face, hopefully" class="u-border--circle">
+				<h2>New Client</h2>
+				<p>Remeha Calenta</p>
+			</header>
+			<article>
+				<h3>Repair: E-36</h3>
+				<p>Today</p>
+			</article>
+			<article>
+				<h3>Register Boiler</h3>
+				<p>2017.07.03 14:05</p>
+			</article>		
+		</div>
+		<div class="c-chat">
+			<nav class="c-chat__nav">
+				
+			</nav>
+			<div id="bot" class="c-chat__conversation"> </div>
+		</div>
+	</div>
+
+	
+
+
+	    
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     <script>
+			var speechOptions = {
+			 			  speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
+			        {
+			            subscriptionKey: '1675676ca8844c9888ee8908c0548236',
+			            gender: CognitiveServices.SynthesisGender.Female,
+			            voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+			        })
+			}
+
       BotChat.App({
         directLine: { secret: 'id6WnINJj8w.cwA.hqc.24PsVHx9z9Cq8EwXrJPiFNgFwszWwS2UjBxdzuTllNY' },
+        speechOptions: speechOptions,
         user: { id: 'userid' },
         bot: { id: 'botid' },
         resize: 'detect'

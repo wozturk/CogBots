@@ -1,0 +1,66 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.app {
+	display: flex;
+	height: 100vh;
+}
+.c-nav {
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.c-chat-overview {
+	width: calc((5*(100% / 12)) - 80px);
+	background-color: rgba(0,104,179,.2);
+}
+.c-chat-overview header {
+	grid-template-areas: "img heading" "img tagline";
+}
+.c-chat-overview h2 {
+	grid-area: heading;
+
+}
+.c-chat-overview p {
+	grid-area: tagline;
+
+}
+.c-chat-overview img {
+	grid-area: img;
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+.o-tiles {
+	color: #0068b3;
+}
+
+.o-tiles article {
+
+
+}
+
+.u-border--circle {
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.c-chat {
+	width: calc(7*(100% /12));
+	height: 100vh;
+
+}
+.c-chat__nav {
+	height: 80px;
+
+}
+.c-chat__conversation {
+	width: 100%;
+	height: calc(100vh - 80px);
+	position: relative;
+}
