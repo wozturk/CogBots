@@ -15,6 +15,13 @@ html, body {
 	flex-direction: column;
 	justify-content: space-between;
 }
+.c-nav button {
+	appearance: none;
+	height: 80px;
+	background: 0;
+	border: 0;
+	fill: #00559C;
+}
 
 .c-chat-overview {
 	padding: 2em;
@@ -45,9 +52,69 @@ html, body {
 	height: 100px;
 	object-fit: cover;
 }
+.c-chat__nav {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 1.5rem;
+	background-color: #ffffff;
+}
+
+.c-chat__offline {
+	display: flex;
+	align-items: center;
+}
+
+.c-chat__offline span {
+	width: 100px;
+}
 
 .o-tiles {
 
+}
+
+.o-switch {
+	position: relative;
+	height: 15px;
+	width: 30px;
+	border: 1px solid #00559C;
+	background: #e5eff7;
+	border-radius: 20px;
+	overflow: hidden;
+
+}
+
+.o-switch input {
+	display: none;
+}
+
+.o-switch input:checked + label {
+	background-color: #00559C;
+	transition: .3s ease-in-out;
+}
+
+.o-switch label {
+	display: block;
+	width: 30px;
+	height: 15px;
+	font-size: 0;
+}
+
+.o-switch label::before {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	width: 11px;
+	height: 11px;
+	background-color: #fff;
+	border: 1px solid #00559C;
+	border-radius: 50%;	
+	
+}
+
+.o-switch input:checked + label::before {
+	background-color: #fff;	
+	transform: translateX(14px);
 }
 
 .o-tiles article {
@@ -97,6 +164,12 @@ html, body {
 	height: calc(100vh - 80px);
 	position: relative;
 }
+
+
+
+
+
+
 
 .wc-console,
 .wc-message-content {

@@ -22,7 +22,7 @@ server.post('/api/messages', connector.listen());
 const bot = new builder.UniversalBot(connector, [
 
 	(session) => {
-		session.send('Welkom. Ik ben een bot, waarmee kan ik je helpen. geef de errorcode op.');
+		session.send('Welkom. Ik ben een bot, waarmee kan ik je helpen...');
 		builder.Prompts.text(session, `geef je error code op`);
 	},
 	(session, results, next) => {
