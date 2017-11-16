@@ -20,33 +20,72 @@ const connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 const bot = new builder.UniversalBot(connector, [
-
-	(session) => {
-		session.send('Welkom. Ik ben een bot, waarmee kan ik je helpen...');
-		builder.Prompts.text(session, `geef je error code op`);
-	},
-	(session, results, next) => {
-		if(results.response) {
-			session.beginDialog('./dialogs/lookupInput');
+	
+	(session, args, next) => {
+		if(!session.userData.userName || session.userData.userName === undefined) {
+			return session.beginDialog('intro');
+		} else {
+			session.send(`Hi ${session.userData.userName}`);
+			next();
 		}
+	},
+	(session, result) => {
+		if(result.response) {
+			session.userData.userName = result.response;
+		}
+		session.send(`Hi ${session.userData.userName}`);
+		session.beginDialog('errorHandle');
+	},
+	(session, result) => {
+
 	}
 ]);
 
 // Enable Conversation Data persistence
 bot.set('persistConversationData', true);
 
-bot.dialog('carousel', require('./dialogs/carousel')).triggerAction({
- matches:[/E60/i, /hi/i]
+bot.dialog('intro', [
+	(session) => {
+		builder.Prompts.text(session, 'Welkom. Dit is een geautomatiseerde zelfservice. Ik ben bot, wat is je naam?');
+	},
+	(session, result) => {
+
+		session.endDialogWithResult(result);
+
+	}
+]);
+
+// bot.dialog('carousel', require('./dialogs/carousel')).triggerAction({
+//  matches:[/hallo/i]
+// });
+
+bot.dialog('errorHandle', require('./dialogs/errorHandle')).cancelAction('cancelAction', 'Ok, ik annuleer deze actie.', {
+    matches: /^laat maar$|^annuleer$|^nee$/i
 });
+bot.dialog('nextStep', require('./dialogs/nextStep')).cancelAction('cancelAction', 'Ok, ik annuleer deze actie.', {
+    matches: /^laat maar$|^annuleer$|^nee$/i
+}).triggerAction({
+	matches: [/step/i]
+});
+bot.dialog('startLiveHelp', require('./dialogs/startLiveHelp')).cancelAction('cancelAction', 'Ok, ik annuleer deze actie.', {
+    matches: /^laat maar$|^annuleer$|^nee$/i
+});
+
+bot.dialog('openLightbox', require('./dialogs/openLightbox')).triggerAction({matches: /^http/i});
+
 
 bot.dialog('support', require('./dialogs/support')).triggerAction({
 	matches: [/help/i, /support/i, /huh/i, /wat/i]
 });
 
 bot.dialog('reset', (session) => {
+	session.userData = {}; 
+	session.privateConversationData = {};
+	session.conversationData = {};
+	session.dialogData = {};
 	session.reset();
 }).triggerAction({
-	matches: [/cancel/i, /stop/i, /reset/i]
+	matches: [/cancel/i, /stop/i, /reset/i, /^start opnieuw$/i]
 });
 
 // log any bot errors into the console

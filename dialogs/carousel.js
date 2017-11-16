@@ -34,15 +34,25 @@ module.exports = [
 			        new builder.HeroCard(session)
 			            .title('Step 3')
 			            .subtitle('')
-			            .text('duck duck goose')
+			            .text('postback')
 			            .images([
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.openUrl(session, 'https://loremflickr.com/320/180/goose', 'click')
-			                .image('http://howcanihelp.azurewebsites.net/svg/warning.svg')
+			                builder.CardAction.postBack(session, 'hi i was clicked', 'open')
+			               
 			            ]),
-
+			          new builder.HeroCard(session)
+			            .title('Step 4')
+			            .subtitle('')
+			            .text('imBack')
+			            .images([
+			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png')
+			            ])
+			            .buttons([
+			                builder.CardAction.imBack(session, 'support', 'open')
+			               
+			            ]),
 
 			        new builder.HeroCard(session)
 			            .title('Step 2')
@@ -58,7 +68,9 @@ module.exports = [
 			}
 	},
 	(session, results) => {
+		console.log(session.message.text);
 			if(results.response) {
+
 				session.send(`you answered ${results.response.entity}`);
 				switch (results.response.entity) {
 					case 'ja':
