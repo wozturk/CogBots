@@ -22,7 +22,7 @@ server.post('/api/messages', connector.listen());
 const bot = new builder.UniversalBot(connector, [
 	
 	(session, args, next) => {
-		if(!session.userData.userName || session.userData.userName === undefined) {
+		if(!session.userData.userName) {
 			return session.beginDialog('intro');
 		} else {
 			session.send(`Hi ${session.userData.userName}`);
@@ -30,10 +30,8 @@ const bot = new builder.UniversalBot(connector, [
 		}
 	},
 	(session, result) => {
-		if(result.response) {
-			session.userData.userName = result.response;
-		}
-		session.send(`Hi ${session.userData.userName}`);
+		session.userData.userName = result.response;
+		//session.send(`Hi ${session.userData.userName}`);
 		session.beginDialog('errorHandle');
 	},
 	(session, result) => {
@@ -49,7 +47,7 @@ bot.dialog('intro', [
 		builder.Prompts.text(session, 'Welkom. Dit is een geautomatiseerde zelfservice. Ik ben bot, wat is je naam?');
 	},
 	(session, result) => {
-
+		session.send(`Hi ${result.response}`);
 		session.endDialogWithResult(result);
 
 	}
@@ -79,11 +77,11 @@ bot.dialog('support', require('./dialogs/support')).triggerAction({
 });
 
 bot.dialog('reset', (session) => {
+	session.reset();
 	session.userData = {}; 
 	session.privateConversationData = {};
 	session.conversationData = {};
 	session.dialogData = {};
-	session.reset();
 }).triggerAction({
 	matches: [/cancel/i, /stop/i, /reset/i, /^start opnieuw$/i]
 });
