@@ -20,8 +20,10 @@ const connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 const bot = new builder.UniversalBot(connector, [
-	
-(session) => {
+	(session) => {
+session.send(`Dit is een geautomatiseerde zelfservice. Ik ben bot.`);
+	},
+(session, results) => {
 	builder.Prompts.text(session, 'Voer de error code in');
 },
 (session, results) => {
