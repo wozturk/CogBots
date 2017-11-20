@@ -1,6 +1,6 @@
 module.exports = [
 (session) => {
-	builder.Prompts.text(session, 'Waarmee kan ik je helpen?');
+	builder.Prompts.text(session, 'Voer de error code in');
 },
 (session, results) => {
 	session.send(`Dit betekent dat de boiler oververhit is geraakt. Vaak helpt het door de boiler gedurende een korte periode uit te schakelen.`);

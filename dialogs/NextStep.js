@@ -8,8 +8,7 @@ module.exports = [
 		        .attachments(cards);
 
 		    session.send(reply);
-
-		    
+		    session.replaceDialog('/');
 
 
 
@@ -23,7 +22,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/1-unscrew.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.openUrl(session, 'https://loremflickr.com/320/180/kitten', 'click')
+			                builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ]),
 			        new builder.HeroCard(session)
 			            .title('Stap 3')
@@ -33,19 +32,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.postBack(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png', 'open')
-			               
-			            ]),
-			          new builder.HeroCard(session)
-			            .title('Stap 4')
-			            .subtitle('')
-			            .text('imBack')
-			            .images([
-			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png')
-			            ])
-			            .buttons([
-			                builder.CardAction.imBack(session, 'imback', 'open')
-			               
+			                 builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ]),
 
 			        new builder.HeroCard(session)
@@ -56,7 +43,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/3-meassure.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.openUrl(session, 'https://loremflickr.com/320/180/puppy', 'Leg uit')
+			                builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ])
 			    ];
 			}

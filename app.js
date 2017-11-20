@@ -25,7 +25,7 @@ const bot = new builder.UniversalBot(connector, [
 		if(!session.userData.userName) {
 			return session.beginDialog('intro');
 		} else {
-			session.send(`Hi ${session.userData.userName}`);
+			session.send(`Nog een probleem waarmee ik je kan helpen?`);
 			next();
 		}
 	},
@@ -47,7 +47,7 @@ bot.dialog('intro', [
 		builder.Prompts.text(session, 'Welkom. Dit is een geautomatiseerde zelfservice. Ik ben bot, wat is je naam?');
 	},
 	(session, result) => {
-		session.send(`Hi ${result.response}`);
+		session.send(`Hi ${result.response}, waarmee kan ik je helpen?`);
 		session.endDialogWithResult(result);
 
 	}
