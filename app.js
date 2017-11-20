@@ -106,13 +106,13 @@ bot.on('error', function (e) {
 });
 
 // initiating the root dialog
-bot.on('conversationUpdate', function (message) {
-    if (message.membersAdded) {
-        message.membersAdded.forEach(function (identity) {
-            if (identity.id === message.address.bot.id) {
+// bot.on('conversationUpdate', function (message) {
+//     if (message.membersAdded) {
+//         message.membersAdded.forEach(function (identity) {
+//             if (identity.id === message.address.bot.id) {
 
-                bot.beginDialog(message.address, '/');
-            }
-        });
-    }
-});
+//                 bot.beginDialog(message.address, '/');
+//             }
+//         });
+//     }
+// });
