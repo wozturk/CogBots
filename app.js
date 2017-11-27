@@ -84,6 +84,7 @@ bot.dialog('startLiveHelp', require('./dialogs/startLiveHelp')).cancelAction('ca
 });
 
 bot.dialog('openLightbox', require('./dialogs/openLightbox')).triggerAction({matches: /^http/i});
+bot.dialog('speak', require('./dialogs/speak')).triggerAction({matches: /^speak/i});
 
 
 bot.dialog('support', require('./dialogs/support')).triggerAction({
