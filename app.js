@@ -129,7 +129,8 @@ bot.on('error', event => {
 // });
 
 //Bot will listen to inbound backchannel events
-bot.on('event', event => {
+bot.on('event', function(event) {
+	//console.log(event);
 	let msg = new builder.Message().address(event.address);
 	if(event.name === 'buttonClicked') {
 		msg.txt('You clicked a button');
