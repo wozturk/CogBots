@@ -98,7 +98,7 @@ bot.dialog('backchat', [
     session.endDialog(reply);
 	}
 ]).triggerAction({
-	matches: /backchat/i
+	matches: /blue/i
 });
 
 bot.dialog('reset', (session) => {
