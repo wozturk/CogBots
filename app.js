@@ -91,6 +91,16 @@ bot.dialog('support', require('./dialogs/support')).triggerAction({
 	matches: [/help/i, /support/i, /huh/i, /wat/i]
 });
 
+bot.dialog('backchat', [
+	(session) => {
+		//take input(session.message.text) and send it back to bot
+    let reply = createEvent("changeBackground", session.message.text, session.message.address);
+    session.endDialog(reply);
+	}
+]).triggerAction({
+	matches: /backchat/i
+});
+
 bot.dialog('reset', (session) => {
 	session.reset();
 	session.userData = {}; 
@@ -102,8 +112,8 @@ bot.dialog('reset', (session) => {
 });
 
 // log any bot errors into the console
-bot.on('error', function (e) {
-    console.log('And error ocurred', e);
+bot.on('error', event => {
+    console.log('And error ocurred', event);
 });
 
 // initiating the root dialog
@@ -117,3 +127,23 @@ bot.on('error', function (e) {
 //         });
 //     }
 // });
+
+//Bot will listen to inbound backchannel events
+bot.on('event', event => {
+	let msg = new builder.Message().address(event.address);
+	if(event.name === 'buttonClicked') {
+		msg.txt('You clicked a button');
+	}
+	bot.send(msg);
+});
+
+const createEvent = (eventName, value, address) => {
+	//create new msg address 
+	let msg = new builder.Message().address(address);
+	//set the following values
+	msg.data.type = 'event';
+	msg.data.name = eventName;
+	msg.data.value = value;
+	//and return whole msg back when function is called.
+	return msg;
+}
