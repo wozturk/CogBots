@@ -85,7 +85,6 @@ bot.dialog('startLiveHelp', require('./dialogs/startLiveHelp')).cancelAction('ca
 
 bot.dialog('openLightbox', (session) => {
 	let postBack = session.message.text;
-	session.send(`you said ${postBack}`);
   let reply = createEvent("openModal", postBack, session.message.address);
   session.endDialog(reply);
 }).triggerAction({matches: /^http/i});
@@ -128,7 +127,11 @@ bot.on('error', event => {
 // initiating the root dialog
 bot.on('conversationUpdate', function (message) {
     if (message.membersAdded) {
-      bot.beginDialog(message.address, '/');
+        message.membersAdded.forEach(function (identity) {
+            if (identity.id === message.address.bot.id) {
+                bot.beginDialog(message.address, '/');
+            }
+        });
     }
 });
 
