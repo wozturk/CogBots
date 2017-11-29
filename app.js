@@ -98,7 +98,6 @@ bot.dialog('backchat', [
 	(session, result) => {
     let reply = createEvent("changeBackground", session.message.text, session.message.address);
     session.endDialog(reply);
-
 	}
 ]).triggerAction({
 	matches: /backchat/i
@@ -120,16 +119,15 @@ bot.on('error', event => {
 });
 
 // initiating the root dialog
-// bot.on('conversationUpdate', function (message) {
-//     if (message.membersAdded) {
-//         message.membersAdded.forEach(function (identity) {
-//             if (identity.id === message.address.bot.id) {
-
-//                 bot.beginDialog(message.address, '/');
-//             }
-//         });
-//     }
-// });
+bot.on('conversationUpdate', function (message) {
+    if (message.membersAdded) {
+        message.membersAdded.forEach(function (identity) {
+            if (identity.id === message.address.bot.id) {
+                bot.beginDialog(message.address, '/');
+            }
+        });
+    }
+});
 
 //Bot will listen to inbound backchannel events
 bot.on('event', (event) => {
@@ -141,12 +139,9 @@ bot.on('event', (event) => {
 });
 
 const createEvent = (eventName, value, address) => {
-	//create new msg address 
 	let msg = new builder.Message().address(address);
-	//set the following values
 	msg.data.type = 'event';
 	msg.data.name = eventName;
 	msg.data.value = value;
-	//and return whole msg back when function is called.
 	return msg;
 }

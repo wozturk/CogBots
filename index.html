@@ -78,6 +78,12 @@
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     <script>
+
+			function openModal(contentUrl) {
+				console.log(contentUrl);
+				$('.c-chat').addClass('testClass');
+			}
+
 			var speechOptions = {
 				speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '1675676ca8844c9888ee8908c0548236' }),
 			 			  speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
@@ -88,13 +94,29 @@
 			        })
 			}
 
+			var botConnection = new BotChat.DirectLine({
+				secret: 'id6WnINJj8w.cwA.hqc.24PsVHx9z9Cq8EwXrJPiFNgFwszWwS2UjBxdzuTllNY'
+			});
+
       BotChat.App({
-        directLine: { secret: 'id6WnINJj8w.cwA.hqc.24PsVHx9z9Cq8EwXrJPiFNgFwszWwS2UjBxdzuTllNY' },
+        botConnection: botConnection,
         speechOptions: speechOptions,
         user: { id: 'userid' },
         bot: { id: 'botid' },
         resize: 'detect'
       }, document.getElementById("bot"));
+
+
+			botConnection.activity$
+			.filter(function(activity) {
+				return activity.type === 'event' && activity.name === 'openModal';
+			})
+			.subscribe(function(activity) { 
+				openModal(activity.value);
+			});
+			
+
+
     </script>
 </body>
 </html>
