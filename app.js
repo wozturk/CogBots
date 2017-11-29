@@ -93,12 +93,15 @@ bot.dialog('support', require('./dialogs/support')).triggerAction({
 
 bot.dialog('backchat', [
 	(session) => {
-		//take input(session.message.text) and send it back to bot
+		session.send(`We gaan met de html babbelen via de bot, cool...`);
+	},
+	(session, result) => {
     let reply = createEvent("changeBackground", session.message.text, session.message.address);
     session.endDialog(reply);
+
 	}
 ]).triggerAction({
-	matches: /blue/i
+	matches: /backchat/i
 });
 
 bot.dialog('reset', (session) => {
@@ -130,7 +133,6 @@ bot.on('error', event => {
 
 //Bot will listen to inbound backchannel events
 bot.on('event', (event) => {
-	//console.log(event);
 	let msg = new builder.Message().address(event.address);
 	if(event.name === 'buttonClicked') {
 		msg.text('You clicked a button');
