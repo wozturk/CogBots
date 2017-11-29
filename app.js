@@ -138,8 +138,8 @@ bot.on('conversationUpdate', function (message) {
 //Bot will listen to inbound backchannel events
 bot.on('event', (event) => {
 	let msg = new builder.Message().address(event.address);
-	if(event.name === 'buttonClicked') {
-		msg.text('You clicked a button');
+	if(event.name === 'startLiveHelp') {
+		msg.text('We bellen even een medewerker ....');
 	}
 	bot.send(msg);
 });
