@@ -91,7 +91,7 @@
 			$('[data-call]').on('click', function() {
 						botConnection
 						.postActivity({
-							from: {},
+							from: { id: 'me'},
 							name: 'startLiveHelp',
 							type: 'event',
 							value: ''
