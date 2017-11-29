@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Azure Bot</title>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,700,700i" rel="stylesheet">
+	<link href="//cdn.rawgit.com/noelboss/featherlight/1.7.9/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+	<link href="//cdn.rawgit.com/noelboss/featherlight/1.7.9/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" />
 	 <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 	 <link href="./styles.css" rel="stylesheet" />
 </head>
@@ -75,13 +77,14 @@
 
     <script src="https://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.9/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="//cdn.rawgit.com/noelboss/featherlight/1.7.9/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     <script>
 
 			function openModal(contentUrl) {
 				console.log(contentUrl);
-				$('.c-chat').addClass('testClass');
 				$.featherlight(contentUrl);
 			}
 
