@@ -83,7 +83,14 @@ bot.dialog('startLiveHelp', require('./dialogs/startLiveHelp')).cancelAction('ca
     matches: /^laat maar$|^annuleer$|^nee$/i
 });
 
-bot.dialog('openLightbox', require('./dialogs/openLightbox')).triggerAction({matches: /^http/i});
+bot.dialog('openLightbox', (session) => {
+	let postBack = session.message.text;
+	session.send(`you said ${postBack}`);
+  let reply = createEvent("openModal", postBack, session.message.address);
+  session.endDialog(reply);
+}).triggerAction({matches: /^http/i});
+
+
 bot.dialog('speak', require('./dialogs/speak')).triggerAction({matches: /^speak/i});
 
 
@@ -121,11 +128,7 @@ bot.on('error', event => {
 // initiating the root dialog
 bot.on('conversationUpdate', function (message) {
     if (message.membersAdded) {
-        message.membersAdded.forEach(function (identity) {
-            if (identity.id === message.address.bot.id) {
-                bot.beginDialog(message.address, '/');
-            }
-        });
+      bot.beginDialog(message.address, '/');
     }
 });
 
