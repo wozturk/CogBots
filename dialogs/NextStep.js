@@ -22,7 +22,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/1-unscrew.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
+			                builder.CardAction.postBack(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ]),
 			        new builder.HeroCard(session)
 			            .title('Stap 3')
@@ -32,7 +32,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/2-plug.png')
 			            ])
 			            .buttons([
-			                 builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
+			                 builder.CardAction.postBack(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ]),
 
 			        new builder.HeroCard(session)
@@ -43,7 +43,7 @@ module.exports = [
 			                builder.CardImage.create(session, 'http://howcanihelp.azurewebsites.net/images/3-meassure.png')
 			            ])
 			            .buttons([
-			                builder.CardAction.openUrl(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
+			                builder.CardAction.postBack(session, 'http://howcanihelp.azurewebsites.net/images/lightbox.png', 'meer details')
 			            ])
 			    ];
 			}
